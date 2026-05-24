@@ -42,3 +42,14 @@ def calculate_parking_fee(vehicle_type, parking_duration, day_type, is_public_ho
     validate_day_type(day_type)
 
     return get_base_fee(vehicle_type)
+
+def calculate_parking_fee(vehicle_type, parking_duration, day_type, is_public_holiday):
+    validate_vehicle_type(vehicle_type)
+    validate_parking_duration(parking_duration)
+    validate_day_type(day_type)
+
+    # NEW: free parking rule
+    if parking_duration < 1:
+        return 0
+
+    return get_base_fee(vehicle_type)
