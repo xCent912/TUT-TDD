@@ -33,3 +33,9 @@ def test_negative_parking_duration_raises_value_error():
 def test_parking_duration_type_error():
     with pytest.raises(TypeError, match="must be a number"):
         calculate_parking_fee('car', 'two', 'weekday', False)
+
+def test_free_parking_under_one_hour():
+    assert calculate_parking_fee('car', 0.5, 'weekday', False) == 0
+
+def test_free_parking_for_motorcycle_under_one_hour():
+    assert calculate_parking_fee('motorcycle', 0.99, 'weekday', False) == 0
