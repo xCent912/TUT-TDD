@@ -18,6 +18,8 @@ def validate_parking_duration(parking_duration):
         raise TypeError('Parking duration must be a number.')
     if parking_duration < 0:
         raise ValueError('Parking duration must not be negative.')
+    if parking_duration > 24:
+        raise ValueError('Parking duration must not exceed 24 hours.')
 
 def validate_day_type(day_type):
     if day_type not in VALID_DAY_TYPES:

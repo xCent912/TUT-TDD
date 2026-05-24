@@ -48,3 +48,9 @@ def test_weekend_surcharge_motorcycle():
 
 def test_no_surcharge_on_weekday():
     assert calculate_parking_fee('truck', 2, 'weekday', False) == 10
+def test_invalid_duration_over_24_hours():
+    with pytest.raises(ValueError, match="must not exceed 24"):
+        calculate_parking_fee('car', 25, 'weekday', False)
+
+def test_boundary_exactly_24_hours_is_valid():
+    assert calculate_parking_fee('car', 24, 'weekday', False) == 5
